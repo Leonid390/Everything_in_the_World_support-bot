@@ -5,7 +5,7 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['help'])
 def handle_start(message):
-    bot.send_message(message.chat.id, "Я Бот поддержки интернет магазина.")
+    bot.send_message(message.chat.id, "Я Бот поддержки интернет магазина 'Всё на свете'.")
     bot.send_message(message.chat.id, "Спрашивайте ниже, что вам не понятно по заказам или темам, имеющим отношение к нашему магазину")
 
 @bot.message_handler(func=lambda m: True)
@@ -24,6 +24,7 @@ def handle_message(message):
         conn.commit()
 
     conn.close()
+
 
 
 
