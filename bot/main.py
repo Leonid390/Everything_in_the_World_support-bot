@@ -19,7 +19,7 @@ def handle_message(message):
     if answer:
         bot.send_message(message.chat.id, answer[0])
     else:
-        bot.send_message(message.chat.id, "Вопрос не имеет ответа, но добавлен в базу данных и может получить ответ через время. Попробуйте спроить позже")
+        bot.send_message(message.chat.id, "Вопрос не имеет ответа, но добавлен в базу данных и может получить ответ через время. Попробуйте спросить позже")
         cursor.execute("INSERT INTO qa (question, answer) VALUES (?, ?)", (question, ""))
         conn.commit()
 
@@ -29,4 +29,5 @@ def handle_message(message):
 
 
 bot.infinity_polling()
+
 
