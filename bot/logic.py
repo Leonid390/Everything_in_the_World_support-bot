@@ -15,3 +15,21 @@ CREATE TABLE IF NOT EXISTS qa (
 
 conn.commit()
 conn.close()
+
+def q_and_a(question):
+    """Обрабатывает вопрос и возвращает ответ или None"""
+    conn = sqlite3.connect('qa_bot.db')
+    cursor = conn.cursor()
+    
+    answer_row = cursor.execute("SELECT answer FROM qa WHERE question = ?", (question,)).fetchone()
+    
+    if answer_row:
+        result = answer_row[0] 
+    else:
+        result = None
+        cursor.execute("INSERT INTO qa (question, answer) VALUES (?, ?)", (question, ""))
+        conn.commit()
+    
+    conn.close()
+    return result
+
